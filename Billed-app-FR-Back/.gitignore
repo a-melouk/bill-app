@@ -1,3 +1,5 @@
 database_test.sqlite
 node_modules/
 coverage/
+Billed-app-FR-Back/database_dev.sqlite
+database_dev.sqlite

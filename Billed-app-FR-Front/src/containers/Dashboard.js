@@ -86,16 +86,20 @@ export default class {
   }
 
   handleEditTicket(e, bill, bills) {
+    // bill is the selected bill
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
+    console.log(this.counter)
     if (this.counter % 2 === 0) {
       bills.forEach(b => {
-        $(`#open-bill${b.id}`).css({ background: '#0D5AE5' })
+        $(`#open-bill${b.id}`).css({ background: '#0D5AE5' })// Blue background
       })
-      $(`#open-bill${bill.id}`).css({ background: '#2A2B35' })
+      $(`#open-bill${bill.id}`).css({ background: '#2A2B35' })// Dark background for selected bill
       $('.dashboard-right-container div').html(DashboardFormUI(bill))
       $('.vertical-navbar').css({ height: '150vh' })
+      console.log(this.counter)
       this.counter ++
+      console.log(this.counter)
     } else {
       $(`#open-bill${bill.id}`).css({ background: '#0D5AE5' })
 
@@ -145,9 +149,21 @@ export default class {
       this.counter ++
     }
 
-    bills.forEach(bill => {
+    //Was adding more than one click event listener to each bill
+    /* bills.forEach(bill => {
       $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
-    })
+    }) */
+
+    // Add click event listeners to each bill
+    bills.forEach(bill => {
+      const element = $(`#open-bill${bill.id}`);
+
+      // Remove existing click event listeners
+      element.off('click');
+
+      // Add a new click event listener
+      element.click((e) => this.handleEditTicket(e, bill, bills));
+    });
 
     return bills
 
