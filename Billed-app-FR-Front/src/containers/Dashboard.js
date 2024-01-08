@@ -98,7 +98,6 @@ export default class {
     // bill is the selected bill
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
-    console.log(this.counter)
     if (this.counter % 2 === 0) {
       bills.forEach((b) => {
         $(`#open-bill${b.id}`).css({ background: '#0D5AE5' }) // Blue background
@@ -106,9 +105,7 @@ export default class {
       $(`#open-bill${bill.id}`).css({ background: '#2A2B35' }) // Dark background for selected bill
       $('.dashboard-right-container div').html(DashboardFormUI(bill))
       $('.vertical-navbar').css({ height: '150vh' })
-      console.log(this.counter)
       this.counter++
-      console.log(this.counter)
     } else {
       $(`#open-bill${bill.id}`).css({ background: '#0D5AE5' })
 
