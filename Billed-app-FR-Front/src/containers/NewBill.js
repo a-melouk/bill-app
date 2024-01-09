@@ -3,6 +3,7 @@ import Logout from './Logout.js'
 
 export default class NewBill {
   constructor({ document, onNavigate, store, localStorage }) {
+    this.validFileUpload = null
     this.document = document
     this.onNavigate = onNavigate
     this.store = store
@@ -27,7 +28,8 @@ export default class NewBill {
       file.type !== 'image/jpg'
     ) {
       alert('Le format du fichier doit être .png ou .jpeg ou .jpg')
-      return
+      this.validFileUpload = false
+      return false
     } else {
       const filePath = e.target.value.split(/\\/g)
       const fileName = filePath[filePath.length - 1]
@@ -53,6 +55,8 @@ export default class NewBill {
           this.fileName = fileName
         })
         .catch((error) => console.error(error))
+      this.validFileUpload = true
+      return true
     }
   }
   handleSubmit = (e) => {
