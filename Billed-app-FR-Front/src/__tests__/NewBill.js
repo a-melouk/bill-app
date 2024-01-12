@@ -31,7 +31,7 @@ describe('Given I am connected as an employee', () => {
           files: [new File(['file'], 'name.zip', { type: 'application/zip' })],
         },
       })
-      expect(newBill.validFileUpload).not.toBeTruthy()
+      expect(newBill.validFileUpload).toBe(false)
     })
   })
 
@@ -56,7 +56,7 @@ describe('Given I am connected as an employee', () => {
           files: [new File(['file'], 'name.jpg', { type: 'image/jpg' })],
         },
       })
-      expect(newBill.validFileUpload).toBeTruthy()
+      expect(newBill.validFileUpload).toBe(true)
     })
   })
 
